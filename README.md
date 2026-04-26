@@ -13,7 +13,7 @@ This platform monitors the health of **900+ power transformers** across **400+ s
 - ~60% reduction in manual analysis time for field engineers
 - ~40% improvement in early fault detection vs prior reactive approach
 
-> ⚠️ **Note:** This repository uses sanitized mock data and placeholder credentials. All real OCI, Azure, and Fulcrum credentials have been replaced with environment variable references. Proprietary business logic has been abstracted.
+> **Note:** This repository uses sanitized mock data and placeholder credentials. All real OCI, Azure, and Fulcrum credentials have been replaced with environment variable references. Proprietary business logic has been abstracted.
 
 ---
 
