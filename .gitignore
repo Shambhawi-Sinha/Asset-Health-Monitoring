@@ -1,0 +1,43 @@
+# Environment
+.env
+*.env.local
+
+# Oracle wallet — NEVER commit real wallet files
+backend/wallet/
+*.pem
+*.ora
+*.p12
+*.jks
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Node / React
+node_modules/
+frontend/build/
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Data — never commit real client data
+sample_data/real_*
+*.csv.bak

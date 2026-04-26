@@ -1,0 +1,16 @@
+asset_id,substation_id,substation_name,health_score,risk_band,mean_winding_temp,hotspot_temp,thermal_aging_factor,overload_severity,tap_changer_stress,load_temp_sensitivity,last_inspection_date,photo_record_id
+TRF001,SUB001,Northgate Primary 1,82.4,GREEN,74.2,88.1,1.21,0.02,8,0.61,2024-11-15,mock-photo-001
+TRF002,SUB001,Northgate Primary 2,78.9,GREEN,76.8,91.4,1.38,0.05,11,0.65,2024-11-15,mock-photo-002
+TRF003,SUB002,Riverside Switching,55.3,AMBER,83.1,98.7,2.04,0.12,19,0.74,2024-10-22,mock-photo-003
+TRF004,SUB002,Riverside Switching,61.7,AMBER,80.5,95.2,1.87,0.08,15,0.70,2024-10-22,mock-photo-004
+TRF005,SUB003,Eastfield Distribution,38.1,RED,91.4,112.3,4.87,0.23,38,0.89,2024-09-30,mock-photo-005
+TRF006,SUB003,Eastfield Distribution,44.2,AMBER,87.2,105.1,3.21,0.18,27,0.82,2024-09-30,mock-photo-006
+TRF007,SUB004,Millbrook Bulk Supply,71.6,GREEN,75.1,89.8,1.29,0.03,9,0.63,2024-11-01,mock-photo-007
+TRF008,SUB004,Millbrook Bulk Supply,68.4,AMBER,78.3,93.7,1.56,0.07,13,0.68,2024-11-01,mock-photo-008
+TRF009,SUB005,Southside Grid,29.7,RED,96.8,118.4,6.43,0.31,52,0.93,2024-08-14,mock-photo-009
+TRF010,SUB005,Southside Grid,33.5,RED,93.2,114.7,5.11,0.27,45,0.91,2024-08-14,mock-photo-010
+TRF011,SUB006,Central Interchange,85.2,GREEN,72.6,86.3,1.14,0.01,6,0.58,2024-11-20,mock-photo-011
+TRF012,SUB006,Central Interchange,80.1,GREEN,73.9,87.9,1.19,0.02,7,0.60,2024-11-20,mock-photo-012
+TRF013,SUB007,Western Terminal,52.8,AMBER,84.7,100.2,2.31,0.14,22,0.76,2024-10-05,mock-photo-013
+TRF014,SUB007,Western Terminal,48.3,AMBER,86.1,103.4,2.78,0.16,25,0.80,2024-10-05,mock-photo-014
+TRF015,SUB008,Airport Feeder,90.3,GREEN,70.1,83.4,1.08,0.01,5,0.55,2024-11-25,mock-photo-015
