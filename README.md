@@ -105,7 +105,7 @@ Risk bands: **GREEN** (score > 70) · **AMBER** (40–70) · **RED** (< 40)
 ## Repository Structure
 
 ```
-substation-health-platform/
+Asset-Health-Monitoring/
 │
 ├── backend/                        # FastAPI backend
 │   ├── main.py                     # App entry point, CORS, router registration
@@ -174,8 +174,8 @@ substation-health-platform/
 ### Option A — Quickest: Docker Compose (mock mode, no credentials)
 
 ```bash
-git clone https://github.com/your-username/substation-health-platform.git
-cd substation-health-platform
+git clone https://github.com/your-username/Asset-Health-Monitoring.git
+cd Asset-Health-Monitoring
 
 docker-compose up
 # Backend:  http://localhost:5000
@@ -189,8 +189,8 @@ Both services start in mock mode by default. The full dashboard renders with sam
 ### Option B — Without Docker (mock mode)
 
 ```bash
-git clone https://github.com/your-username/substation-health-platform.git
-cd substation-health-platform
+git clone https://github.com/your-username/Asset-Health-Monitoring.git
+cd Asset-Health-Monitoring
 
 # Terminal 1 — Backend
 cd backend
