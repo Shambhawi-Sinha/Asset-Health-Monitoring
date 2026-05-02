@@ -1,0 +1,90 @@
+[
+  {
+    "wo_id": "WO-2024-0891",
+    "asset_id": "TRF005",
+    "substation_id": "SUB003",
+    "wo_type": "EMERGENCY",
+    "priority": 1,
+    "description": "Winding temperature alarm sustained above 95C for 6 hours. Immediate inspection required. Oil sampling ordered.",
+    "failure_code": "THERMAL_OVERLOAD",
+    "created_date": "2024-09-28",
+    "completion_date": null
+  },
+  {
+    "wo_id": "WO-2024-0892",
+    "asset_id": "TRF009",
+    "substation_id": "SUB005",
+    "wo_type": "EMERGENCY",
+    "priority": 1,
+    "description": "Hotspot temperature exceeding 118C. Load shedding initiated. Emergency crew dispatched.",
+    "failure_code": "THERMAL_CRITICAL",
+    "created_date": "2024-08-10",
+    "completion_date": null
+  },
+  {
+    "wo_id": "WO-2024-0750",
+    "asset_id": "TRF003",
+    "substation_id": "SUB002",
+    "wo_type": "CORRECTIVE",
+    "priority": 2,
+    "description": "Tap changer operations exceeding 18 per day over past 3 weeks. Mechanism inspection scheduled.",
+    "failure_code": "TAP_CHANGER_WEAR",
+    "created_date": "2024-10-18",
+    "completion_date": "2024-10-25"
+  },
+  {
+    "wo_id": "WO-2024-0620",
+    "asset_id": "TRF005",
+    "substation_id": "SUB003",
+    "wo_type": "CORRECTIVE",
+    "priority": 2,
+    "description": "Oil DGA results show elevated ethylene — early thermal fault signature. Oil treatment scheduled.",
+    "failure_code": "OIL_DEGRADATION",
+    "created_date": "2024-08-02",
+    "completion_date": "2024-08-20"
+  },
+  {
+    "wo_id": "WO-2024-0510",
+    "asset_id": "TRF001",
+    "substation_id": "SUB001",
+    "wo_type": "PREVENTIVE",
+    "priority": 4,
+    "description": "Annual inspection. Bushing condition check, oil sampling, cooling fan test. All within tolerance.",
+    "failure_code": null,
+    "created_date": "2024-11-10",
+    "completion_date": "2024-11-11"
+  },
+  {
+    "wo_id": "WO-2024-0480",
+    "asset_id": "TRF010",
+    "substation_id": "SUB005",
+    "wo_type": "EMERGENCY",
+    "priority": 1,
+    "description": "FAA calculated at 5.1 — insulation aging at 5x normal rate. Emergency derating to 80% capacity.",
+    "failure_code": "THERMAL_AGING",
+    "created_date": "2024-08-14",
+    "completion_date": null
+  },
+  {
+    "wo_id": "WO-2024-0340",
+    "asset_id": "TRF007",
+    "substation_id": "SUB004",
+    "wo_type": "PREVENTIVE",
+    "priority": 3,
+    "description": "6-month scheduled maintenance. Gasket inspection, cooling system flush. Completed without findings.",
+    "failure_code": null,
+    "created_date": "2024-10-28",
+    "completion_date": "2024-10-29"
+  },
+  {
+    "wo_id": "WO-2024-0210",
+    "asset_id": "TRF013",
+    "substation_id": "SUB007",
+    "wo_type": "CORRECTIVE",
+    "priority": 2,
+    "description": "Load-temperature sensitivity coefficient at 0.76 — potential cooling degradation. Cooling bank inspection ordered.",
+    "failure_code": "COOLING_DEGRADATION",
+    "created_date": "2024-09-15",
+    "completion_date": null
+  }
+]

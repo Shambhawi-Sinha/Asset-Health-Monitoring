@@ -1,0 +1,10 @@
+pandas==2.2.2
+numpy==1.26.4
+scipy==1.13.1
+python-oracledb==2.1.2
+openai==1.30.1
+requests==2.32.2
+urllib3==2.2.1
+Pillow==10.3.0
+opencv-python-headless==4.9.0.80   # headless — no GUI deps, works in server/OCI env
+python-dotenv==1.0.1
