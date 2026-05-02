@@ -1,40 +1,44 @@
 """
 endpoints/report.py — GET /api/report
-
+ 
 Returns work order summaries per asset. Used by React for the substation
 detail view — shows maintenance history, failure codes, open emergency WOs.
-
+ 
 Called in parallel with /api/images via Promise.all in the React dashboard.
 """
-
+ 
 import os
+import json
+import pathlib
+from typing import Optional, List
+from collections import defaultdict, Counter
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-
+ 
 router = APIRouter()
-
+ 
 MOCK_MODE = os.getenv("MOCK_MODE", "false").lower() == "true"
-
-
+ 
+ 
 class WorkOrderSummary(BaseModel):
     asset_id: str
     substation_id: str
     total_work_orders: int
-    open_emergency_wos: int          # unresolved emergency orders — risk signal
-    last_wo_date: str | None
-    last_wo_type: str | None         # PREVENTIVE | CORRECTIVE | EMERGENCY
-    last_wo_description: str | None
-    dominant_failure_code: str | None
-
-
-@router.get("/report", response_model=list[WorkOrderSummary])
+    open_emergency_wos: int                    # unresolved emergency orders — risk signal
+    last_wo_date: Optional[str] = None
+    last_wo_type: Optional[str] = None         # PREVENTIVE | CORRECTIVE | EMERGENCY
+    last_wo_description: Optional[str] = None
+    dominant_failure_code: Optional[str] = None
+ 
+ 
+@router.get("/report", response_model=List[WorkOrderSummary])
 def get_report():
     if MOCK_MODE:
         return _load_mock_report()
     return _query_oracle()
-
-
-def _query_oracle() -> list[dict]:
+ 
+ 
+def _query_oracle() -> List[dict]:
     from db import query_to_dicts
     sql = """
         SELECT
@@ -60,17 +64,14 @@ def _query_oracle() -> list[dict]:
         return query_to_dicts(sql)
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"Oracle query failed: {exc}")
-
-
-def _load_mock_report() -> list[dict]:
-    import json, pathlib
+ 
+ 
+def _load_mock_report() -> List[WorkOrderSummary]:
     path = pathlib.Path(__file__).parents[2] / "sample_data" / "work_orders.json"
     with open(path) as f:
         raw = json.load(f)
-
-    # Aggregate mock records to summary level
-    from collections import defaultdict, Counter
-    agg: dict[str, dict] = defaultdict(lambda: {
+ 
+    agg = defaultdict(lambda: {
         "total_work_orders": 0,
         "open_emergency_wos": 0,
         "last_wo_date": None,
@@ -78,7 +79,7 @@ def _load_mock_report() -> list[dict]:
         "last_wo_description": None,
         "failure_codes": [],
     })
-
+ 
     for wo in raw:
         key = wo["asset_id"]
         a = agg[key]
@@ -93,7 +94,7 @@ def _load_mock_report() -> list[dict]:
             a["last_wo_description"] = wo["description"]
         if wo.get("failure_code"):
             a["failure_codes"].append(wo["failure_code"])
-
+ 
     results = []
     for a in agg.values():
         dominant = Counter(a["failure_codes"]).most_common(1)
@@ -108,3 +109,4 @@ def _load_mock_report() -> list[dict]:
             dominant_failure_code=dominant[0][0] if dominant else None,
         ))
     return results
+ 

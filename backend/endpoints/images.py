@@ -1,52 +1,54 @@
 """
 endpoints/images.py — GET /api/images
-
+ 
 Returns substation health records: asset metadata, computed health scores,
 risk banding, and inspection image references.
-
+ 
 Called by React on dashboard load as part of Promise.all parallel fetch.
 """
-
+ 
 import os
-import json
+import csv
+import pathlib
+from typing import Optional, List
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-
+ 
 router = APIRouter()
-
+ 
 MOCK_MODE = os.getenv("MOCK_MODE", "false").lower() == "true"
-
-
+ 
+ 
 class SubstationRecord(BaseModel):
     asset_id: str
     substation_id: str
     substation_name: str
-    health_score: float                  # 0–100, higher = healthier
-    risk_band: str                       # GREEN | AMBER | RED
-    mean_winding_temp: float | None
-    hotspot_temp: float | None
-    thermal_aging_factor: float | None   # FAA — dimensionless
-    overload_severity: float | None      # ratio: actual / rated MVA
-    tap_changer_stress: float | None     # cumulative daily tap ops
-    load_temp_sensitivity: float | None  # Pearson r, load vs temp
-    last_inspection_date: str | None
-    photo_record_id: str | None          # Fulcrum record ID for /api/photo
-
-
-@router.get("/images", response_model=list[SubstationRecord])
+    health_score: float                        # 0–100, higher = healthier
+    risk_band: str                             # GREEN | AMBER | RED
+    mean_winding_temp: Optional[float] = None
+    hotspot_temp: Optional[float] = None
+    thermal_aging_factor: Optional[float] = None   # FAA — dimensionless
+    overload_severity: Optional[float] = None      # ratio: actual / rated MVA
+    tap_changer_stress: Optional[float] = None     # cumulative daily tap ops
+    load_temp_sensitivity: Optional[float] = None  # Pearson r, load vs temp
+    last_inspection_date: Optional[str] = None
+    photo_record_id: Optional[str] = None          # Fulcrum record ID for /api/photo
+ 
+ 
+@router.get("/images", response_model=List[SubstationRecord])
 def get_images():
     """
     Fetch substation health records from Oracle ADB.
-
+ 
     In mock mode, returns records from sample_data/health_scores.csv.
     In live mode, queries the SUBSTATION_HEALTH_VW view.
     """
     if MOCK_MODE:
         return _load_mock_records()
     return _query_oracle()
-
-
-def _query_oracle() -> list[dict]:
+ 
+ 
+def _query_oracle() -> List[dict]:
     from db import query_to_dicts
     sql = """
         SELECT
@@ -70,10 +72,9 @@ def _query_oracle() -> list[dict]:
         return query_to_dicts(sql)
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"Oracle query failed: {exc}")
-
-
-def _load_mock_records() -> list[dict]:
-    import csv, pathlib
+ 
+ 
+def _load_mock_records() -> List[dict]:
     path = pathlib.Path(__file__).parents[2] / "sample_data" / "health_scores.csv"
     with open(path) as f:
         reader = csv.DictReader(f)
@@ -95,3 +96,4 @@ def _load_mock_records() -> list[dict]:
                 "photo_record_id":       row.get("photo_record_id"),
             })
     return records
+ 
